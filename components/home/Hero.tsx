@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FadeInUp } from "@/components/shared/Animations";
 
 export default function Hero() {
     return (
@@ -17,34 +20,42 @@ export default function Hero() {
 
             {/* Content */}
             <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-sm font-medium border border-white/20 mb-6 animate-fade-in-up">
-                    <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-                    <span>Premium Comfort in Dera Bassi</span>
-                </div>
+                <FadeInUp delay={0.1}>
+                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-sm font-medium border border-white/20 mb-6">
+                        <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                        <span>Premium Comfort in Dera Bassi</span>
+                    </div>
+                </FadeInUp>
 
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
-                    Experience Luxury & <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/70">
-                        Local Elegance
-                    </span>
-                </h1>
+                <FadeInUp delay={0.2}>
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
+                        Experience Luxury & <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/70">
+                            Local Elegance
+                        </span>
+                    </h1>
+                </FadeInUp>
 
-                <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed">
-                    The perfect destination for weddings, corporate events, and leisure stays on the Chandigarh-Ambala highway.
-                </p>
+                <FadeInUp delay={0.3}>
+                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed">
+                        The perfect destination for weddings, corporate events, and leisure stays on the Chandigarh-Ambala highway.
+                    </p>
+                </FadeInUp>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Button size="lg" className="bg-white text-black hover:bg-neutral-200 border-none text-base h-14 px-8 rounded-full">
-                        Book Your Stay
-                    </Button>
-                    <Button variant="outline" size="lg" className="bg-transparent text-white border-white hover:bg-white/10 text-base h-14 px-8 rounded-full">
-                        Explore Events
-                    </Button>
-                </div>
+                <FadeInUp delay={0.4}>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <Button size="lg" className="bg-white text-black hover:bg-neutral-200 border-none text-base h-14 px-8 rounded-full">
+                            Book Your Stay
+                        </Button>
+                        <Button variant="outline" size="lg" className="bg-transparent text-white border-white hover:bg-white/10 text-base h-14 px-8 rounded-full">
+                            Explore Events
+                        </Button>
+                    </div>
+                </FadeInUp>
             </div>
 
             {/* Booking Bar (Placeholder for future feature) */}
-            <div className="absolute bottom-10 left-0 w-full hidden md:block">
+            <FadeInUp delay={0.6} className="absolute bottom-10 left-0 w-full hidden md:block">
                 <div className="container mx-auto px-4">
                     <div className="bg-white rounded-full p-2 max-w-4xl mx-auto flex items-center justify-between shadow-2xl">
                         <div className="flex-1 px-8 py-3 border-r border-neutral-100">
@@ -64,7 +75,7 @@ export default function Hero() {
                         </button>
                     </div>
                 </div>
-            </div>
+            </FadeInUp>
         </section>
     );
 }

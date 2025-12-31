@@ -1,7 +1,10 @@
+"use client";
+
 import SectionHeading from "@/components/shared/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Link from 'next/link';
+import { FadeInUp } from "@/components/shared/Animations";
 
 export default function LocationSection() {
     return (
@@ -14,7 +17,7 @@ export default function LocationSection() {
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div>
+                    <FadeInUp>
                         <SectionHeading
                             title="Find Us in the Heart of Dera Bassi"
                             subtitle="Location"
@@ -56,10 +59,10 @@ export default function LocationSection() {
                                 </Button>
                             </Link>
                         </div>
-                    </div>
+                    </FadeInUp>
 
                     {/* Interactive Map Placeholder / Block */}
-                    <div className="h-[400px] bg-neutral-800 rounded-3xl overflow-hidden border border-white/10 relative group">
+                    <FadeInUp delay={0.2} className="h-[400px] bg-neutral-800 rounded-3xl overflow-hidden border border-white/10 relative group">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13723.123456789!2d76.8433!3d30.5964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDM1JzQ3LjAiTiA3NsKwNTAnMzUuOSJF!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin"
                             width="100%"
@@ -73,9 +76,11 @@ export default function LocationSection() {
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity">
                             <span className="bg-black/50 backdrop-blur px-4 py-2 rounded-lg text-white font-medium">Interact with Map</span>
                         </div>
-                    </div>
+                    </FadeInUp>
                 </div>
             </div>
         </section>
     );
 }
+
+
