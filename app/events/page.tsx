@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { Check, ArrowRight } from "lucide-react";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Events & Banquets | Hotel Saugaat Regency",
+    description: "Host your dream weddings and corporate events at Hotel Saugaat Regency. Our banquet halls and meeting rooms are equipped with top-notch facilities.",
+};
+
 export default function EventsPage() {
     const venues = [
         {

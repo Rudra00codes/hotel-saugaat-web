@@ -2,6 +2,13 @@ import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { Mail, Phone, MapPin } from "lucide-react";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact Us | Hotel Saugaat Regency",
+    description: "Get in touch with Hotel Saugaat Regency. Call us for bookings, event inquiries, or visit us in Dera Bassi.",
+};
+
 export default function ContactPage() {
     return (
         <div className="min-h-screen bg-neutral-50 pb-20 pt-24">

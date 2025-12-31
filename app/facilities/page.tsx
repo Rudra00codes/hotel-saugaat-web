@@ -2,6 +2,13 @@ import Image from "next/image";
 import SectionHeading from "@/components/shared/SectionHeading";
 import FeatureCard from "@/components/shared/FeatureCard";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Amenities & Facilities | Hotel Saugaat Regency",
+    description: "Explore our premium amenities including Banquet Hall, Restaurant, Bar, and more at Hotel Saugaat Regency.",
+};
+
 export default function FacilitiesPage() {
     const facilities = [
         {

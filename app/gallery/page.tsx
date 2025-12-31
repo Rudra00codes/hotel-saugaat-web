@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/shared/SectionHeading";
 import FeatureCard from "@/components/shared/FeatureCard";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Photo Gallery | Hotel Saugaat Regency",
+    description: "Explore photos of Hotel Saugaat Regency, including rooms, banquet halls, dining areas, and the beautiful exterior.",
+};
+
 export default function GalleryPage() {
     const images = [
         { src: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=3540&auto=format&fit=crop", alt: "Hotel Exterior" },
