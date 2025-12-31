@@ -26,11 +26,23 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Prevent scrolling when mobile menu is open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isMobileMenuOpen]);
+
     return (
         <header
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out border-b border-transparent",
-                isScrolled ? "bg-white/80 backdrop-blur-md py-4 shadow-sm border-neutral-200" : "bg-transparent py-6"
+                isScrolled ? "bg-white/50 backdrop-blur-md py-4 shadow-sm border-neutral-200" : "bg-transparent py-6"
             )}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
