@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google"; // Using Manrope as per Design System "Modern Geometric"
+import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
+const cabinet = localFont({
+  src: "../public/font/CabinetGrotesk/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Variable.woff2",
+  variable: "--font-cabinet",
+  display: "swap",
+});
+
+const clash = localFont({
+  src: "../public/font/ClashDisplay/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Variable.woff2",
+  variable: "--font-clash",
   display: "swap",
 });
 
@@ -22,11 +28,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          manrope.className
+          "min-h-screen bg-background antialiased",
+          cabinet.variable,
+          clash.variable
         )}
       >
         <Navbar />
