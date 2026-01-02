@@ -94,6 +94,13 @@ export default function Footer() {
                         <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
                     </div>
                 </div>
+
+                {/* Large Background Typography */}
+                <div className="mt-16 text-center select-none overflow-hidden">
+                    <h2 className="text-[10vw] font-black leading-none tracking-tighter bg-gradient-to-b from-gray-50 to-black bg-clip-text text-transparent opacity-60 whitespace-nowrap">
+                        SAUGAAT REGENCY
+                    </h2>
+                </div>
             </div>
         </footer>
     );
