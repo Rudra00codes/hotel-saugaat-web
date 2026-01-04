@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Star, Minus, Plus } from "lucide-react";
@@ -13,14 +14,17 @@ export default function Hero() {
 
     return (
         <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
-            {/* Background Image (Placeholder) */}
-            <div
-                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=3540&auto=format&fit=crop')"
-                }}
-            >
-                <div className="absolute inset-0 bg-black/40" />
+            {/* Background Image (Optimized) */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=3540&auto=format&fit=crop"
+                    alt="Luxury Hotel Poolside"
+                    fill
+                    priority
+                    className="object-cover"
+                    quality={90}
+                />
+                <div className="absolute inset-0 bg-black/40 z-10" />
             </div>
 
             {/* Content */}
