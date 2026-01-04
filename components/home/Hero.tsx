@@ -24,7 +24,7 @@ export default function Hero() {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-left text-white">
+            <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-left md:text-center text-white">
                 <FadeInUp delay={0.1}>
                     <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-sm font-medium border border-white/20 mb-6">
                         <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
@@ -33,7 +33,7 @@ export default function Hero() {
                 </FadeInUp>
 
                 <FadeInUp delay={0.2}>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight md:max-w-4xl md:mx-auto">
                         Experience Luxury & <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EACFA3] to-[#F0944D]">
                             Local Elegance
@@ -42,13 +42,13 @@ export default function Hero() {
                 </FadeInUp>
 
                 <FadeInUp delay={0.3}>
-                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed">
+                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed md:mx-auto">
                         The perfect destination for weddings, corporate events, and leisure stays on the Chandigarh-Ambala highway.
                     </p>
                 </FadeInUp>
 
                 <FadeInUp delay={0.4}>
-                    <div className="flex flex-col sm:flex-row items-start justify-start gap-4">
+                    <div className="flex flex-col sm:flex-row items-start justify-start md:items-center md:justify-center gap-4">
                         <Button size="lg" asChild className="bg-white text-black hover:bg-neutral-200 border-none text-base h-14 px-8 rounded-full">
                             <Link href="/rooms">Book Your Stay</Link>
                         </Button>
