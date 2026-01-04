@@ -1,4 +1,5 @@
 @import "tailwindcss";
+/* Rebuild trigger */
 
 @layer base {
   :root {

@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background antialiased",
+          "min-h-screen bg-[#EDE9DF] antialiased",
           cabinet.variable,
           clash.variable
         )}
