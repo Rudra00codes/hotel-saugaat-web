@@ -3,7 +3,7 @@ import { Facebook, Instagram, Twitter, MapPin, Phone, Mail } from "lucide-react"
 
 export default function Footer() {
     return (
-        <footer className="bg-neutral-900 text-white pt-20 pb-10 rounded-t-[40px] mt-20">
+        <footer className="bg-[#283123] text-white pt-20 pb-10 rounded-t-[40px] mt-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
                     {/* Brand/About */}
@@ -97,7 +97,7 @@ export default function Footer() {
 
                 {/* Large Background Typography */}
                 <div className="mt-16 text-center select-none overflow-hidden">
-                    <h2 className="text-[10vw] font-black leading-none tracking-tighter bg-gradient-to-b from-gray-50 to-black bg-clip-text text-transparent opacity-60 whitespace-nowrap">
+                    <h2 className="text-[10vw] font-black leading-none tracking-tighter bg-[linear-gradient(to_bottom,#883322,#283123)] bg-clip-text text-transparent opacity-60 whitespace-nowrap">
                         SAUGAAT REGENCY
                     </h2>
                 </div>

@@ -43,8 +43,8 @@ export default function RoomsPage() {
     ];
 
     return (
-        <div className="bg-neutral-50 min-h-screen pb-20 pt-24">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-cream-mist min-h-screen pb-20 pt-24">
+            <div className="container mx-auto pt-16 px-4 sm:px-6 lg:px-8">
                 <div className="mb-12">
                     <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">Our Accommodations</h1>
                     <p className="text-lg text-neutral-600 max-w-2xl">

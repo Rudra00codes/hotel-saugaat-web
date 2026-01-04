@@ -30,7 +30,7 @@ const FACILITIES = [
 
 export default function FacilitiesGrid() {
     return (
-        <section className="py-20 bg-neutral-50 rounded-[40px] my-10">
+        <section className="py-20 bg-cream-mist rounded-[40px] my-10">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <FadeInUp>
                     <SectionHeading

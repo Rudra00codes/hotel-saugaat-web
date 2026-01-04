@@ -30,7 +30,7 @@ export default function EventsPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-neutral-50 pb-20 pt-24">
+        <div className="min-h-screen bg-cream-mist pb-20 pt-24">
             {/* Hero Section */}
             <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden mb-20">
                 <Image
