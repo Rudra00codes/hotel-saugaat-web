@@ -33,7 +33,7 @@ export default function TestimonialCard({
                 )}
 
                 <p className="text-neutral-600 leading-relaxed text-lg italic">
-                    "{content}"
+                    &quot;{content}&quot;
                 </p>
             </div>
 

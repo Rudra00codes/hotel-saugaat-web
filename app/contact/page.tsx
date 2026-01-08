@@ -23,7 +23,7 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto bg-white rounded-[40px] p-8 md:p-12 shadow-sm border border-neutral-100">
                     {/* Contact Info */}
                     <div>
-                        <h2 className="text-2xl font-bold mb-8">We'd love to hear from you</h2>
+                        <h2 className="text-2xl font-bold mb-8">We&apos;d love to hear from you</h2>
                         <div className="space-y-8">
                             <div className="flex items-start gap-5">
                                 <div className="bg-neutral-100 p-4 rounded-full text-neutral-900">

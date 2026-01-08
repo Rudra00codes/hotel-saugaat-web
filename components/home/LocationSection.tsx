@@ -2,7 +2,7 @@
 
 import SectionHeading from "@/components/shared/SectionHeading";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 import Link from 'next/link';
 import { FadeInUp } from "@/components/shared/Animations";
 

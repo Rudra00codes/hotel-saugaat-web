@@ -3,11 +3,12 @@ import Link from "next/link";
 import { ArrowLeft, Check, Wifi, Coffee, Tv, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function RoomDetailsPage({ params }: { params: { slug: string } }) {
-    // Mock data - In real app, fetch based on params.slug
+export default async function RoomDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    // Mock data - In real app, fetch based on slug
     const room = {
         title: "Super Deluxe Room",
-        slug: params.slug,
+        slug: slug,
         price: "₹2,500",
         description: "Experience the epitome of comfort in our Super Deluxe Room. Designed with modern aesthetics and equipped with premium amenities, this room offers a sanctuary of relaxation. Enjoy the stunning views of the city skyline while you unwind in luxury.",
         images: [
