@@ -32,8 +32,8 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-lg mb-1">Phone Number</h3>
-                                    <p className="text-neutral-600 mb-1">Reception: +91 98765 43210</p>
-                                    <p className="text-neutral-600">Events: +91 98765 43211</p>
+                                    <p className="text-neutral-600 mb-1">Reception: +91 8872011301</p>
+                                    <p className="text-neutral-600">Events: +91 8872011302</p>
                                 </div>
                             </div>
 
@@ -43,8 +43,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-lg mb-1">Email Address</h3>
-                                    <p className="text-neutral-600">info@hotelsaugaat.com</p>
-                                    <p className="text-neutral-600">bookings@hotelsaugaat.com</p>
+                                    <p className="text-neutral-600">saugaatregency@gmail.com</p>
                                 </div>
                             </div>
 
