@@ -1,30 +1,8 @@
 "use client";
 
 import SectionHeading from "@/components/shared/SectionHeading";
-import TestimonialCard from "@/components/shared/TestimonialCard";
-import { Button } from "@/components/ui/button";
-import { StaggerChildren, staggerItem, FadeInUp } from "@/components/shared/Animations";
-import { motion } from "framer-motion";
-
-const TESTIMONIALS = [
-    {
-        name: "Carlos Garcia",
-        content: "My stay at Saugaat Hotel was absolutely fantastic! The luxurious ambiance and elegant decor made it feel like a true five-star experience. Highly recommended!",
-        location: "Madrid, Spain",
-    },
-    {
-        name: "Emma Wilson",
-        content: "The atmosphere was serene and beautifully decorated, making it ideal for couples. The spa services were excellent and left us feeling rejuvenated.",
-        location: "Canberra, Australia",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=3387&auto=format&fit=crop"
-    },
-    {
-        name: "Yui Suzuki",
-        content: "We had a wonderful family vacation. The hotel had something for everyone, including a safe play area for kids. The resort facilities are top-notch.",
-        location: "Osaka, Japan",
-        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=3461&auto=format&fit=crop"
-    }
-];
+import { FadeInUp } from "@/components/shared/Animations";
+import Script from "next/script";
 
 export default function TestimonialsSection() {
     return (
@@ -39,15 +17,8 @@ export default function TestimonialsSection() {
                     />
                 </FadeInUp>
 
-                <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {TESTIMONIALS.map((testimonial, index) => (
-                        <motion.div key={index} variants={staggerItem}>
-                            <TestimonialCard
-                                {...testimonial}
-                            />
-                        </motion.div>
-                    ))}
-                </StaggerChildren>
+                <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+                <div className="elfsight-app-f7bdca31-09c6-4127-8455-78f80e1169c2" data-elfsight-app-lazy></div>
             </div>
         </section>
     );
