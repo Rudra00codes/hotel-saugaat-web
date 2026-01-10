@@ -36,7 +36,7 @@ export default function ContactForm() {
 
         try {
             // These should ideally be in environment variables
-            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_c07fq9m";
+            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_1z9cdkb";
             const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
             const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
