@@ -4,6 +4,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import WhatsAppButton from "@/components/shared/WhatsAppButton";
+import { Toaster } from "sonner";
 
 const cabinet = localFont({
   src: "../public/font/CabinetGrotesk/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Variable.woff2",
@@ -38,7 +40,9 @@ export default function RootLayout({
       >
         <Navbar />
         <main className="min-h-screen">{children}</main>
+        <WhatsAppButton />
         <Footer />
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );
