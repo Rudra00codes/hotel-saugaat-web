@@ -62,11 +62,3 @@ export interface GalleryItem {
     category: string;
     altText?: string;
 }
-
-export interface Testimonial {
-    _id: string;
-    guestName: string;
-    rating: number;
-    review: string;
-    eventType?: string;
-}
