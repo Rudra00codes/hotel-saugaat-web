@@ -82,16 +82,7 @@ export const galleryQuery = groq`
   }
 `;
 
-// --- Testimonials ---
-export const testimonialsQuery = groq`
-  *[_type == "testimonial"] | order(date desc) {
-    _id,
-    guestName,
-    rating,
-    review,
-    eventType
-  }
-`;
+
 
 // --- Amenities ---
 export const hotelAmenitiesQuery = groq`
