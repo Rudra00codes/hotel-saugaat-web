@@ -67,18 +67,20 @@ export const eventsQuery = groq`
     description,
     "image": images[0].asset->url,
     capacity,
-    features
+    features,
+    order
   }
 `;
 
 // --- Gallery ---
 export const galleryQuery = groq`
-  *[_type == "gallery"] | order(order asc) {
+  *[_type == "galleryImage"] | order(order asc) {
     _id,
     title,
     "image": image.asset->url,
     category,
-    altText
+    altText,
+    order
   }
 `;
 
