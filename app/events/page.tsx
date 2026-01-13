@@ -3,6 +3,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { Check, ArrowRight } from "lucide-react";
+import { client } from "@/lib/sanity/client";
+import { eventsQuery } from "@/lib/sanity/queries";
+import { EventSpace } from "@/types/sanity";
 
 import { Metadata } from "next";
 
@@ -11,23 +14,11 @@ export const metadata: Metadata = {
     description: "Host your dream weddings and corporate events at Hotel Saugaat Regency. Our banquet halls and meeting rooms are equipped with top-notch facilities.",
 };
 
-export default function EventsPage() {
-    const venues = [
-        {
-            name: "Grand Banquet Hall",
-            capacity: "200 Guests",
-            image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=3536&auto=format&fit=crop",
-            description: "Our spacious banquet hall is perfect for grand weddings, receptions, and social gatherings. Featuring elegant decor and customizable lighting.",
-            features: ["Customizable Layout", "Audio/Visual Equipment", "Catering Service", "Dedicated Event Team"]
-        },
-        {
-            name: "Corporate Meeting Room",
-            capacity: "50 Guests",
-            image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=3538&auto=format&fit=crop",
-            description: "Designed for productivity, our meeting room is ideal for conferences, seminars, and corporate workshops.",
-            features: ["High-speed WiFi", "Projector & Screen", "Whiteboard", "Tea/Coffee Service"]
-        }
-    ];
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
+export default async function EventsPage() {
+    const venues: EventSpace[] = await client.fetch(eventsQuery);
 
     return (
         <div className="min-h-screen bg-cream-mist pb-20 pt-24">
@@ -58,7 +49,7 @@ export default function EventsPage() {
 
                 <div className="space-y-24">
                     {venues.map((venue, index) => (
-                        <div key={index} className={`flex flex-col lg:flex-row gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                        <div key={venue._id} className={`flex flex-col lg:flex-row gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                             {/* Image */}
                             <div className="w-full lg:w-1/2 h-[400px] relative rounded-3xl overflow-hidden shadow-lg">
                                 <Image
@@ -79,16 +70,18 @@ export default function EventsPage() {
                                     {venue.description}
                                 </p>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                                    {venue.features.map((feature, idx) => (
-                                        <div key={idx} className="flex items-center gap-3">
-                                            <div className="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center shrink-0">
-                                                <Check className="w-3.5 h-3.5 text-green-600" />
+                                {venue.features && (
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                        {venue.features.map((feature, idx) => (
+                                            <div key={idx} className="flex items-center gap-3">
+                                                <div className="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center shrink-0">
+                                                    <Check className="w-3.5 h-3.5 text-green-600" />
+                                                </div>
+                                                <span className="text-neutral-700">{feature}</span>
                                             </div>
-                                            <span className="text-neutral-700">{feature}</span>
-                                        </div>
-                                    ))}
-                                </div>
+                                        ))}
+                                    </div>
+                                )}
 
                                 <Button size="lg" className="rounded-full px-8">
                                     Inquire for Booking <ArrowRight className="ml-2 w-4 h-4" />

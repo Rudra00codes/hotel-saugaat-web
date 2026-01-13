@@ -7,32 +7,13 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { StaggerChildren, staggerItem, FadeInUp } from "@/components/shared/Animations";
 import { motion } from "framer-motion";
+import { Room } from "@/types/sanity";
 
-const FEATURED_ROOMS = [
-    {
-        title: "Super Deluxe Room",
-        image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=3270&auto=format&fit=crop",
-        slug: "super-deluxe",
-        price: "Starts ₹2,500",
-        description: "Spacious room with modern amenities and city view, perfect for families."
-    },
-    {
-        title: "Executive Suite",
-        image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=3270&auto=format&fit=crop",
-        slug: "executive-suite",
-        price: "Starts ₹3,500",
-        description: "Luxury suite with separate living area and premium furnishings."
-    },
-    {
-        title: "Standard Room",
-        image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=3270&auto=format&fit=crop",
-        slug: "standard-room",
-        price: "Starts ₹1,800",
-        description: "Cozy and affordable room for business travelers."
-    }
-];
+interface FeaturedRoomsProps {
+    rooms: Room[];
+}
 
-export default function FeaturedRooms() {
+export default function FeaturedRooms({ rooms }: FeaturedRoomsProps) {
     return (
         <section className="py-20 bg-cream-mist">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,10 +36,14 @@ export default function FeaturedRooms() {
                 </div>
 
                 <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {FEATURED_ROOMS.map((room) => (
-                        <motion.div key={room.slug} variants={staggerItem}>
+                    {rooms.map((room) => (
+                        <motion.div key={room._id} variants={staggerItem}>
                             <RoomCard
-                                {...room}
+                                title={room.name}
+                                slug={room.slug}
+                                image={room.image}
+                                price={`Starts ${room.price}`}
+                                description={room.shortDescription}
                             />
                         </motion.div>
                     ))}

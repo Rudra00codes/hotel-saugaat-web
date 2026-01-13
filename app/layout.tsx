@@ -6,6 +6,9 @@ import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import WhatsAppButton from "@/components/shared/WhatsAppButton";
 import { Toaster } from "sonner";
+import { client } from "@/lib/sanity/client";
+import { siteSettingsQuery } from "@/lib/sanity/queries";
+import { SiteSettings } from "@/types/sanity";
 
 const cabinet = localFont({
   src: "../public/font/CabinetGrotesk/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Variable.woff2",
@@ -24,11 +27,16 @@ export const metadata: Metadata = {
   description: "Experience comfort and elegance at Hotel Saugaat Regency. Perfect for weddings, corporate events, and leisure stays near Chandigarh.",
 };
 
-export default function RootLayout({
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings: SiteSettings = await client.fetch(siteSettingsQuery);
+
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
@@ -38,10 +46,10 @@ export default function RootLayout({
           clash.variable
         )}
       >
-        <Navbar />
+        <Navbar settings={settings} />
         <main className="min-h-screen">{children}</main>
         <WhatsAppButton />
-        <Footer />
+        <Footer settings={settings} />
         <Toaster position="top-center" richColors />
       </body>
     </html>

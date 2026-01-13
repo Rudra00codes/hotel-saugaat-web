@@ -1,30 +1,70 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Check, Wifi, Coffee, Tv, Car } from "lucide-react";
+import { ArrowLeft, Check, Wifi, Car, Utensils, Wind, Wine, Flower, Dumbbell, Calendar, Shirt } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { client } from "@/lib/sanity/client";
+import { roomBySlugQuery } from "@/lib/sanity/queries";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
+// Define the shape of the data we expect from Sanity for this Page
+interface RoomWithExpandedAmenities {
+    _id: string;
+    name: string;
+    slug: string;
+    shortDescription: string;
+    fullDescription?: any;
+    images: string[];
+    price: string;
+    capacity?: string;
+    amenities?: {
+        name: string;
+        icon: string;
+        image?: string;
+        category?: string;
+    }[];
+}
+
+const iconMap: Record<string, any> = {
+    wifi: Wifi,
+    parking: Car,
+    restaurant: Utensils,
+    ac: Wind,
+    bar: Wine,
+    spa: Flower,
+    gym: Dumbbell,
+    event: Calendar,
+    laundry: Shirt,
+    default: Check
+};
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const room: RoomWithExpandedAmenities = await client.fetch(roomBySlugQuery, { slug });
+
+    if (!room) {
+        return {
+            title: "Room Not Found | Hotel Saugaat Regency",
+        };
+    }
+
+    return {
+        title: `${room.name} | Hotel Saugaat Regency`,
+        description: room.shortDescription,
+    };
+}
+
+// Revalidate every 60 seconds
+export const revalidate = 60;
 
 export default async function RoomDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    // Mock data - In real app, fetch based on slug
-    const room = {
-        title: "Super Deluxe Room",
-        slug: slug,
-        price: "₹2,500",
-        description: "Experience the epitome of comfort in our Super Deluxe Room. Designed with modern aesthetics and equipped with premium amenities, this room offers a sanctuary of relaxation. Enjoy the stunning views of the city skyline while you unwind in luxury.",
-        images: [
-            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=3270&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=3450&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=3540&auto=format&fit=crop"
-        ],
-        amenities: [
-            { name: "Free High-Speed WiFi", icon: Wifi },
-            { name: "Complimentary Breakfast", icon: Coffee },
-            { name: "Smart LED TV", icon: Tv },
-            { name: "Free Parking", icon: Car },
-            { name: "24/7 Room Service", icon: Check },
-            { name: "Air Conditioning", icon: Check },
-        ]
-    };
+
+    const room: RoomWithExpandedAmenities = await client.fetch(roomBySlugQuery, { slug });
+
+    if (!room) {
+        notFound();
+    }
 
     return (
         <div className="bg-cream-mist min-h-screen pb-20 pt-24">
@@ -40,23 +80,33 @@ export default async function RoomDetailsPage({ params }: { params: Promise<{ sl
                 {/* Title Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
                     <div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-2">{room.title}</h1>
+                        <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-2">{room.name}</h1>
                         <p className="text-lg text-neutral-500">Starting from <span className="text-black font-semibold">{room.price}</span> / night</p>
                     </div>
                     <Button size="lg" className="rounded-full px-8">Book This Room</Button>
                 </div>
 
-                {/* Gallery Grid */}
+                {/* Gallery Grid - Handle cases with fewer images */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 rounded-3xl overflow-hidden mb-12 h-[500px]">
                     <div className="relative h-full">
-                        <Image src={room.images[0]} alt={room.title} fill className="object-cover" priority />
+                        {room.images && room.images[0] && (
+                            <Image src={room.images[0]} alt={room.name} fill className="object-cover" priority />
+                        )}
                     </div>
                     <div className="grid grid-rows-2 gap-4 h-full">
                         <div className="relative h-full">
-                            <Image src={room.images[1]} alt="Room Detail" fill className="object-cover" />
+                            {room.images && room.images[1] ? (
+                                <Image src={room.images[1]} alt={`${room.name} detail`} fill className="object-cover" />
+                            ) : (
+                                <div className="w-full h-full bg-neutral-200 flex items-center justify-center text-neutral-400">No Image</div>
+                            )}
                         </div>
                         <div className="relative h-full">
-                            <Image src={room.images[2]} alt="Room Bathroom" fill className="object-cover" />
+                            {room.images && room.images[2] ? (
+                                <Image src={room.images[2]} alt={`${room.name} bathroom`} fill className="object-cover" />
+                            ) : (
+                                <div className="w-full h-full bg-neutral-200 flex items-center justify-center text-neutral-400">No Image</div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -67,23 +117,28 @@ export default async function RoomDetailsPage({ params }: { params: Promise<{ sl
                         {/* Description */}
                         <section>
                             <h2 className="text-2xl font-bold mb-4">About the Room</h2>
-                            <p className="text-neutral-600 leading-relaxed text-lg">
-                                {room.description}
+                            <p className="text-neutral-600 leading-relaxed text-lg whitespace-pre-line">
+                                {room.shortDescription}
                             </p>
                         </section>
 
                         {/* Amenities */}
-                        <section>
-                            <h2 className="text-2xl font-bold mb-6">Room Amenities</h2>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                {room.amenities.map((item, idx) => (
-                                    <div key={idx} className="flex items-center gap-3 p-4 rounded-2xl bg-neutral-50 border border-neutral-100">
-                                        <item.icon className="w-5 h-5 text-neutral-700" />
-                                        <span className="font-medium text-neutral-700">{item.name}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
+                        {room.amenities && room.amenities.length > 0 && (
+                            <section>
+                                <h2 className="text-2xl font-bold mb-6">Room Amenities</h2>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {room.amenities.map((item, idx) => {
+                                        const IconComponent = iconMap[item.icon] || iconMap.default;
+                                        return (
+                                            <div key={idx} className="flex items-center gap-3 p-4 rounded-2xl bg-neutral-50 border border-neutral-100">
+                                                <IconComponent className="w-5 h-5 text-neutral-700" />
+                                                <span className="font-medium text-neutral-700">{item.name}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </section>
+                        )}
                     </div>
 
                     {/* Right Sidebar (Booking Form Placeholder) */}

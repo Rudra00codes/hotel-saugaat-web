@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, MapPin, Phone, Mail } from "lucide-react";
+import { SiteSettings } from "@/types/sanity";
 
-export default function Footer() {
+interface FooterProps {
+    settings?: SiteSettings;
+}
+
+export default function Footer({ settings }: FooterProps) {
+    const siteName = settings?.siteName || "Saugaat";
+    const contact = settings?.contactInfo;
+
     return (
         <footer className="bg-[#283123] text-white pt-20 pb-10 rounded-t-[40px] mt-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,7 +17,7 @@ export default function Footer() {
                     {/* Brand/About */}
                     <div className="space-y-6">
                         <Link href="/" className="inline-block">
-                            <span className="text-3xl font-bold tracking-tight">Saugaat</span>
+                            <span className="text-3xl font-bold tracking-tight">{siteName}</span>
                         </Link>
                         <p className="text-neutral-400 leading-relaxed max-w-sm">
                             Experience the perfect blend of luxury and comfort. Your home away from home in the heart of Dera Bassi.
@@ -54,17 +62,25 @@ export default function Footer() {
                             <li className="flex items-start gap-3 text-neutral-400">
                                 <MapPin className="w-5 h-5 shrink-0 mt-0.5" />
                                 <span>
-                                    Ambala-Chandigarh Highway,<br />
-                                    Dera Bassi, Punjab 140507
+                                    {contact?.address || (
+                                        <>
+                                            Ambala-Chandigarh Highway,<br />
+                                            Dera Bassi, Punjab 140507
+                                        </>
+                                    )}
                                 </span>
                             </li>
                             <li className="flex items-center gap-3 text-neutral-400">
                                 <Phone className="w-5 h-5 shrink-0" />
-                                <a href="tel:+919876543210" className="hover:text-white transition-colors">+91 98765 43210</a>
+                                <a href={`tel:${contact?.phone || "+919876543210"}`} className="hover:text-white transition-colors">
+                                    {contact?.phone || "+91 98765 43210"}
+                                </a>
                             </li>
                             <li className="flex items-center gap-3 text-neutral-400">
                                 <Mail className="w-5 h-5 shrink-0" />
-                                <a href="mailto:info@hotelsaugaat.com" className="hover:text-white transition-colors">info@hotelsaugaat.com</a>
+                                <a href={`mailto:${contact?.email || "info@hotelsaugaat.com"}`} className="hover:text-white transition-colors">
+                                    {contact?.email || "info@hotelsaugaat.com"}
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -88,7 +104,7 @@ export default function Footer() {
 
                 {/* Copyright */}
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500">
-                    <p>© {new Date().getFullYear()} Hotel Saugaat Regency. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} {siteName}. All rights reserved.</p>
                     <div className="flex gap-6">
                         <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
                         <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
@@ -97,8 +113,8 @@ export default function Footer() {
 
                 {/* Large Background Typography */}
                 <div className="mt-16 text-center select-none overflow-hidden">
-                    <h2 className="text-[10vw] font-black leading-none tracking-tighter bg-[linear-gradient(to_bottom,#883322,#283123)] bg-clip-text text-transparent opacity-60 whitespace-nowrap">
-                        SAUGAAT REGENCY
+                    <h2 className="text-[10vw] font-black leading-none tracking-tighter bg-[linear-gradient(to_bottom,#883322,#283123)] bg-clip-text text-transparent opacity-60 whitespace-nowrap uppercase">
+                        {siteName}
                     </h2>
                 </div>
             </div>

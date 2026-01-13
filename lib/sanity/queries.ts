@@ -47,7 +47,12 @@ export const roomBySlugQuery = groq`
     "images": images[].asset->url,
     price,
     capacity,
-    amenities,
+    amenities[]->{
+      name,
+      icon,
+      "image": image.asset->url,
+      category
+    },
     size,
     seo
   }
@@ -85,5 +90,16 @@ export const testimonialsQuery = groq`
     rating,
     review,
     eventType
+  }
+`;
+
+// --- Amenities ---
+export const hotelAmenitiesQuery = groq`
+  *[_type == "amenity" && category == "hotel"] {
+    _id,
+    name,
+    "image": image.asset->url,
+    description,
+    "icon": icon
   }
 `;

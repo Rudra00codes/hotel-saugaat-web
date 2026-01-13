@@ -5,6 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { SiteSettings } from "@/types/sanity";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -15,9 +16,14 @@ const navLinks = [
     { name: "Contact", href: "/contact" },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+    settings?: SiteSettings;
+}
+
+export default function Navbar({ settings }: NavbarProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const siteName = settings?.siteName || "Saugaat";
 
     useEffect(() => {
         const handleScroll = () => {
@@ -51,7 +57,7 @@ export default function Navbar() {
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 z-50">
                         <span className={cn("text-2xl font-bold tracking-tight", isScrolled ? "text-neutral-900" : "text-white mix-blend-difference")}>
-                            Saugaat
+                            {siteName}
                         </span>
                     </Link>
 
@@ -99,7 +105,7 @@ export default function Navbar() {
                             className="flex items-center gap-3 bg-white/20 backdrop-blur-xl border border-white/20 rounded-full pl-5 pr-2 py-2 shadow-lg"
                             whileTap={{ scale: 0.95 }}
                         >
-                            <span className="font-bold text-white tracking-tight uppercase text-sm">Saugaat</span>
+                            <span className="font-bold text-white tracking-tight uppercase text-sm">{siteName}</span>
                             <div className="bg-white/20 rounded-full p-2">
                                 <Menu className="w-5 h-5 text-white" />
                             </div>
@@ -112,7 +118,7 @@ export default function Navbar() {
                         >
                             {/* Header inside Overlay */}
                             <div className="flex items-center justify-between p-6 border-b border-white/10">
-                                <span className="text-2xl font-bold text-white tracking-tight">Saugaat</span>
+                                <span className="text-2xl font-bold text-white tracking-tight">{siteName}</span>
                                 <button
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="bg-white/10 rounded-full p-2 text-white hover:bg-white/20 transition-colors"
@@ -143,7 +149,7 @@ export default function Navbar() {
 
                             {/* Footer inside Overlay */}
                             <div className="p-6 border-t border-white/10 text-white/40 text-sm flex justify-between">
-                                <span>© 2026 Saugaat</span>
+                                <span>© {new Date().getFullYear()} {siteName}</span>
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}

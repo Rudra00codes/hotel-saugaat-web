@@ -1,46 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
+import { client } from "@/lib/sanity/client";
+import { allRoomsQuery } from "@/lib/sanity/queries";
+import { Room } from "@/types/sanity";
 
-export default function RoomsPage() {
-    const rooms = [
-        {
-            title: "Super Deluxe Room",
-            slug: "super-deluxe",
-            image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=3270&auto=format&fit=crop",
-            price: "₹2,500",
-            capacity: "2 Adults, 1 Child",
-            size: "350 sq.ft",
-            description: "Our Super Deluxe Rooms offer a perfect blend of luxury and comfort, featuring modern amenities and stunning city views."
-        },
-        {
-            title: "Executive Suite",
-            slug: "executive-suite",
-            image: "https://images.unsplash.com/photo-1590490360182-f33efe29a77d?q=80&w=3274&auto=format&fit=crop",
-            price: "₹3,500",
-            capacity: "2 Adults, 2 Children",
-            size: "500 sq.ft",
-            description: "Experience ultimate luxury in our Executive Suites, complete with a separate living area and premium furnishings."
-        },
-        {
-            title: "Standard Room",
-            slug: "standard-room",
-            image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=3270&auto=format&fit=crop",
-            price: "₹1,800",
-            capacity: "2 Adults",
-            size: "250 sq.ft",
-            description: "Perfect for business travelers, our Standard Rooms provide a cozy and functional space for your stay."
-        },
-        {
-            title: "Family Suite",
-            slug: "family-suite",
-            image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=3474&auto=format&fit=crop",
-            price: "₹4,500",
-            capacity: "4 Adults",
-            size: "600 sq.ft",
-            description: "Spacious accommodation designed for families, featuring two connecting bedrooms and ample space."
-        }
-    ];
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
+export default async function RoomsPage() {
+    const rooms: Room[] = await client.fetch(allRoomsQuery);
 
     return (
         <div className="bg-cream-mist min-h-screen pb-20 pt-24">
@@ -59,7 +27,7 @@ export default function RoomsPage() {
                             <div className="relative w-full lg:w-1/2 h-64 lg:h-full overflow-hidden">
                                 <Image
                                     src={room.image}
-                                    alt={room.title}
+                                    alt={room.name}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
@@ -68,7 +36,7 @@ export default function RoomsPage() {
                             {/* Content */}
                             <div className="flex-1 p-8 flex flex-col justify-center">
                                 <div className="flex justify-between items-start mb-4">
-                                    <h2 className="text-2xl md:text-3xl font-bold text-neutral-900">{room.title}</h2>
+                                    <h2 className="text-2xl md:text-3xl font-bold text-neutral-900">{room.name}</h2>
                                     <span className="bg-neutral-900 text-white px-4 py-1.5 rounded-full text-sm font-medium">
                                         {room.price} <span className="text-white/70 font-normal">/ night</span>
                                     </span>
@@ -76,12 +44,16 @@ export default function RoomsPage() {
 
                                 <div className="flex items-center gap-4 text-sm text-neutral-500 mb-6">
                                     <span>{room.capacity}</span>
-                                    <span className="w-1 h-1 bg-neutral-300 rounded-full" />
-                                    <span>{room.size}</span>
+                                    {room.size && (
+                                        <>
+                                            <span className="w-1 h-1 bg-neutral-300 rounded-full" />
+                                            <span>{room.size}</span>
+                                        </>
+                                    )}
                                 </div>
 
-                                <p className="text-neutral-600 mb-8 leading-relaxed">
-                                    {room.description}
+                                <p className="text-neutral-600 mb-8 leading-relaxed line-clamp-3">
+                                    {room.shortDescription}
                                 </p>
 
                                 <div className="mt-auto">
