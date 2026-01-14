@@ -19,11 +19,11 @@ export default async function FacilitiesPage() {
     const facilities: Amenity[] = await client.fetch(hotelAmenitiesQuery);
 
     return (
-        <div className="min-h-screen bg-cream-mist pb-20 pt-24">
+        <div className="min-h-screen bg-gradient-to-b from-gray-950 via-orange-100 to-cream-mist pb-20 pt-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">Amenities & Facilities</h1>
-                    <p className="text-lg text-neutral-600">
+                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Amenities & Facilities</h1>
+                    <p className="text-lg text-white/70">
                         At Hotel Saugaat Regency, we prioritize your comfort. Explore our range of top-class facilities designed to make your stay memorable.
                     </p>
                 </div>

@@ -21,7 +21,7 @@ export default async function EventsPage() {
     const venues: EventSpace[] = await client.fetch(eventsQuery);
 
     return (
-        <div className="min-h-screen bg-cream-mist pb-20 pt-24">
+        <div className="min-h-screen bg-gradient-to-b from-gray-950 via-orange-100 to-cream-mist pb-20 pt-24">
             {/* Hero Section */}
             <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden mb-20">
                 <Image

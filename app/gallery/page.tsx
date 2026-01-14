@@ -21,13 +21,13 @@ export default async function GalleryPage() {
     const images: GalleryItem[] = await client.fetch(galleryQuery);
 
     return (
-        <div className="min-h-screen bg-cream-mist pb-20 pt-24">
+        <div className="min-h-screen bg-gradient-to-b from-gray-950 via-orange-100 to-cream-mist pb-20 pt-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionHeading
                     title="Photo Gallery"
                     subtitle="Explore our Hotel"
                     center
-                    className="mb-12"
+                    className="mb-12 text-white"
                 />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px]">
@@ -43,7 +43,7 @@ export default async function GalleryPage() {
                                 fill
                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                             />
-                            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <span className="text-white font-medium bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm">
                                     {img.title}
                                 </span>

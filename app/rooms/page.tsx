@@ -11,11 +11,11 @@ export default async function RoomsPage() {
     const rooms: Room[] = await client.fetch(allRoomsQuery);
 
     return (
-        <div className="bg-cream-mist min-h-screen pb-20 pt-24">
+        <div className="bg-gradient-to-b from-gray-950 via-orange-100 to-cream-mist min-h-screen pb-20 pt-24">
             <div className="container mx-auto pt-16 px-4 sm:px-6 lg:px-8">
                 <div className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">Our Accommodations</h1>
-                    <p className="text-lg text-neutral-600 max-w-2xl">
+                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Our Accommodations</h1>
+                    <p className="text-lg text-white/70 max-w-2xl">
                         Choose from our range of luxurious rooms and suites, designed to provide you with the utmost comfort during your stay in Dera Bassi.
                     </p>
                 </div>
