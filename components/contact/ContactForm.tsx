@@ -72,71 +72,71 @@ export default function ContactForm() {
     };
 
     return (
-        <div className="bg-neutral-50 p-6 md:p-8 rounded-3xl">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="h-full">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium">First Name</label>
+                        <label className="text-sm font-semibold text-neutral-700 ml-1">First Name</label>
                         <input
                             {...register("firstName")}
-                            className={`w-full rounded-xl border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-neutral-900 ${errors.firstName ? "border-red-500" : "border-neutral-200"
+                            className={`w-full rounded-xl border bg-neutral-50 px-4 py-3.5 outline-none transition-all duration-200 focus:bg-white focus:ring-4 focus:ring-[#283123]/10 focus:border-[#283123] ${errors.firstName ? "border-red-500 bg-red-50" : "border-neutral-200"
                                 }`}
                             placeholder="John"
                         />
                         {errors.firstName && (
-                            <p className="text-red-500 text-xs">{errors.firstName.message}</p>
+                            <p className="text-red-500 text-xs ml-1">{errors.firstName.message}</p>
                         )}
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium">Last Name</label>
+                        <label className="text-sm font-semibold text-neutral-700 ml-1">Last Name</label>
                         <input
                             {...register("lastName")}
-                            className={`w-full rounded-xl border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-neutral-900 ${errors.lastName ? "border-red-500" : "border-neutral-200"
+                            className={`w-full rounded-xl border bg-neutral-50 px-4 py-3.5 outline-none transition-all duration-200 focus:bg-white focus:ring-4 focus:ring-[#283123]/10 focus:border-[#283123] ${errors.lastName ? "border-red-500 bg-red-50" : "border-neutral-200"
                                 }`}
                             placeholder="Doe"
                         />
                         {errors.lastName && (
-                            <p className="text-red-500 text-xs">{errors.lastName.message}</p>
+                            <p className="text-red-500 text-xs ml-1">{errors.lastName.message}</p>
                         )}
                     </div>
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-sm font-medium">Email</label>
+                    <label className="text-sm font-semibold text-neutral-700 ml-1">Email</label>
                     <input
                         {...register("email")}
                         type="email"
-                        className={`w-full rounded-xl border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-neutral-900 ${errors.email ? "border-red-500" : "border-neutral-200"
+                        className={`w-full rounded-xl border bg-neutral-50 px-4 py-3.5 outline-none transition-all duration-200 focus:bg-white focus:ring-4 focus:ring-[#283123]/10 focus:border-[#283123] ${errors.email ? "border-red-500 bg-red-50" : "border-neutral-200"
                             }`}
                         placeholder="john@example.com"
                     />
                     {errors.email && (
-                        <p className="text-red-500 text-xs">{errors.email.message}</p>
+                        <p className="text-red-500 text-xs ml-1">{errors.email.message}</p>
                     )}
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-sm font-medium">Message</label>
+                    <label className="text-sm font-semibold text-neutral-700 ml-1">Message</label>
                     <textarea
                         {...register("message")}
-                        className={`w-full rounded-xl border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-neutral-900 min-h-[120px] ${errors.message ? "border-red-500" : "border-neutral-200"
+                        className={`w-full rounded-xl border bg-neutral-50 px-4 py-3.5 outline-none transition-all duration-200 focus:bg-white focus:ring-4 focus:ring-[#283123]/10 focus:border-[#283123] min-h-[140px] resize-none ${errors.message ? "border-red-500 bg-red-50" : "border-neutral-200"
                             }`}
                         placeholder="How can we help you?"
                     />
                     {errors.message && (
-                        <p className="text-red-500 text-xs">{errors.message.message}</p>
+                        <p className="text-red-500 text-xs ml-1">{errors.message.message}</p>
                     )}
                 </div>
 
                 <Button
                     type="submit"
                     size="lg"
-                    className="w-full rounded-full h-12 text-base"
+                    className="w-full rounded-xl h-14 text-base font-semibold bg-[#283123] hover:bg-[#1a2016] text-white shadow-lg shadow-[#283123]/20 transition-all hover:scale-[1.01] active:scale-[0.99]"
                     disabled={isSubmitting}
                 >
                     {isSubmitting ? (
                         <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                             Sending...
                         </>
                     ) : (

@@ -21,39 +21,39 @@ export default function ContactPage() {
                     className="mb-16"
                 />
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto bg-white rounded-[40px] p-8 md:p-12 shadow-sm border border-neutral-100">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-w-5xl mx-auto bg-white/80 backdrop-blur-xl rounded-[3rem] p-8 md:p-12 shadow-2xl border border-white/50">
                     {/* Contact Info */}
-                    <div>
-                        <h2 className="text-2xl font-bold mb-8">We&apos;d love to hear from you</h2>
+                    <div className="flex flex-col justify-center">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-neutral-800">We&apos;d love to hear from you</h2>
                         <div className="space-y-8">
-                            <div className="flex items-start gap-5">
-                                <div className="bg-neutral-100 p-4 rounded-full text-neutral-900">
+                            <div className="flex items-start gap-5 group">
+                                <div className="bg-[#283123] p-4 rounded-2xl text-white shadow-lg shadow-[#283123]/20 transition-transform group-hover:scale-110 duration-300">
                                     <Phone className="w-6 h-6" />
                                 </div>
-                                <div>
-                                    <h3 className="font-semibold text-lg mb-1">Phone Number</h3>
-                                    <p className="text-neutral-600 mb-1">Reception: +91 8872011301</p>
-                                    <p className="text-neutral-600">Events: +91 8872011302</p>
+                                <div className="space-y-1">
+                                    <h3 className="font-bold text-lg text-neutral-900">Phone Number</h3>
+                                    <p className="text-neutral-600 font-medium">+91 8872011301</p>
+                                    <p className="text-neutral-500 text-sm">+91 8872011302 (Events)</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-5">
-                                <div className="bg-neutral-100 p-4 rounded-full text-neutral-900">
+                            <div className="flex items-start gap-5 group">
+                                <div className="bg-[#283123] p-4 rounded-2xl text-white shadow-lg shadow-[#283123]/20 transition-transform group-hover:scale-110 duration-300">
                                     <Mail className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-lg mb-1">Email Address</h3>
-                                    <p className="text-neutral-600">saugaatregency@gmail.com</p>
+                                    <h3 className="font-bold text-lg text-neutral-900 mb-1">Email Address</h3>
+                                    <p className="text-neutral-600 font-medium">saugaatregency@gmail.com</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-5">
-                                <div className="bg-neutral-100 p-4 rounded-full text-neutral-900">
+                            <div className="flex items-start gap-5 group">
+                                <div className="bg-[#283123] p-4 rounded-2xl text-white shadow-lg shadow-[#283123]/20 transition-transform group-hover:scale-110 duration-300">
                                     <MapPin className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-lg mb-1">Location</h3>
-                                    <p className="text-neutral-600">
+                                    <h3 className="font-bold text-lg text-neutral-900 mb-1">Location</h3>
+                                    <p className="text-neutral-600 font-medium leading-relaxed">
                                         Ambala-Chandigarh Highway,<br />
                                         Dera Bassi, Punjab 140507
                                     </p>
@@ -63,7 +63,9 @@ export default function ContactPage() {
                     </div>
 
                     {/* Contact Form */}
-                    <ContactForm />
+                    <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-xl shadow-neutral-200/50">
+                        <ContactForm />
+                    </div>
                 </div>
             </div>
         </div>
