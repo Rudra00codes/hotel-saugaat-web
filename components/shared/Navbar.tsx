@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -56,9 +57,14 @@ export default function Navbar({ settings }: NavbarProps) {
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 z-50">
-                        <span className={cn("text-2xl font-bold tracking-tight", isScrolled ? "text-neutral-900" : "text-white mix-blend-difference")}>
-                            {siteName}
-                        </span>
+                        <Image
+                            src="/navlogo.png"
+                            alt={siteName}
+                            width={120}
+                            height={40}
+                            className="h-10 w-auto object-contain"
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Nav */}
@@ -105,7 +111,14 @@ export default function Navbar({ settings }: NavbarProps) {
                             className="flex items-center gap-3 bg-white/20 backdrop-blur-xl border border-white/20 rounded-full pl-5 pr-2 py-2 shadow-lg"
                             whileTap={{ scale: 0.95 }}
                         >
-                            <span className="font-bold text-white tracking-tight uppercase text-sm">{siteName}</span>
+                            <Image
+                                src="/navlogo.png"
+                                alt={siteName}
+                                width={80}
+                                height={24}
+                                className="h-6 w-auto object-contain"
+                                priority
+                            />
                             <div className="bg-white/20 rounded-full p-2">
                                 <Menu className="w-5 h-5 text-white" />
                             </div>
@@ -118,7 +131,14 @@ export default function Navbar({ settings }: NavbarProps) {
                         >
                             {/* Header inside Overlay */}
                             <div className="flex items-center justify-between p-6 border-b border-white/10">
-                                <span className="text-2xl font-bold text-white tracking-tight">{siteName}</span>
+                                <Image
+                                    src="/navlogo.png"
+                                    alt={siteName}
+                                    width={120}
+                                    height={40}
+                                    className="h-10 w-auto object-contain brightness-0 invert"
+                                    priority
+                                />
                                 <button
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="bg-white/10 rounded-full p-2 text-white hover:bg-white/20 transition-colors"
