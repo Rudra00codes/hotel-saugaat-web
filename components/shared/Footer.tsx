@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram, Twitter, MapPin, Phone, Mail } from "lucide-react";
 import { SiteSettings } from "@/types/sanity";
 
@@ -14,12 +15,23 @@ export default function Footer({ settings }: FooterProps) {
         <footer className="bg-[#283123] text-white pt-20 pb-10 rounded-t-[40px] mt-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-                    {/* Brand/About */}
-                    <div className="space-y-6">
+                    {/* Brand Logo */}
+                    <div className="flex items-start">
                         <Link href="/" className="inline-block">
-                            <span className="text-3xl font-bold tracking-tight">{siteName}</span>
+                            <Image
+                                src="/logo.png"
+                                alt={siteName}
+                                width={500}
+                                height={150}
+                                className="h-40 w-auto object-contain"
+                                priority
+                            />
                         </Link>
-                        <p className="text-neutral-400 leading-relaxed max-w-sm">
+                    </div>
+
+                    {/* Brand Description & Socials */}
+                    <div className="space-y-6">
+                        <p className="text-neutral-400 leading-relaxed">
                             Experience the perfect blend of luxury and comfort. Your home away from home in the heart of Dera Bassi.
                         </p>
                         <div className="flex gap-4">
@@ -36,7 +48,7 @@ export default function Footer({ settings }: FooterProps) {
                     </div>
 
                     {/* Quick Links */}
-                    <div>
+                    <div className="lg:pl-8">
                         <h3 className="text-lg font-semibold mb-6">Explore</h3>
                         <ul className="space-y-4">
                             {[
@@ -83,22 +95,6 @@ export default function Footer({ settings }: FooterProps) {
                                 </a>
                             </li>
                         </ul>
-                    </div>
-
-                    {/* Newsletter (Optional Placeholder) */}
-                    <div>
-                        <h3 className="text-lg font-semibold mb-6">Newsletter</h3>
-                        <p className="text-neutral-400 mb-4">Subscribe for latest updates and offers.</p>
-                        <form className="flex flex-col gap-3">
-                            <input
-                                type="email"
-                                placeholder="Your email address"
-                                className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-white/20 text-white placeholder:text-neutral-600"
-                            />
-                            <button className="bg-white text-black font-medium px-4 py-3 rounded-xl hover:bg-neutral-200 transition-colors">
-                                Subscribe
-                            </button>
-                        </form>
                     </div>
                 </div>
 
