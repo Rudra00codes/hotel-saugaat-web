@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { MapPin, Clock } from "lucide-react";
@@ -7,6 +8,8 @@ import Link from 'next/link';
 import { FadeInUp } from "@/components/shared/Animations";
 
 export default function LocationSection() {
+    const [isMapActive, setIsMapActive] = useState(false);
+
     return (
         <section className="py-20 bg-neutral-900 text-white rounded-[40px] mb-10 overflow-hidden relative">
             {/* Background Map Image (Static Placeholder) */}
@@ -61,20 +64,41 @@ export default function LocationSection() {
                         </div>
                     </FadeInUp>
 
-                    {/* Interactive Map Placeholder / Block */}
+                    {/* Interactive Map Section */}
                     <FadeInUp delay={0.2} className="h-[400px] bg-neutral-800 rounded-3xl overflow-hidden border border-white/10 relative group">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13723.123456789!2d76.8433!3d30.5964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDM1JzQ3LjAiTiA3NsKwNTAnMzUuOSJF!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
-                            allowFullScreen
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                            className="grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100"
-                        ></iframe>
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity">
-                            <span className="bg-black/50 backdrop-blur px-4 py-2 rounded-lg text-white font-medium">Interact with Map</span>
+                        <div className="w-full h-full relative" onMouseLeave={() => setIsMapActive(false)}>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3434.343419918231!2d76.8415!3d30.5925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fecc85579aaaa%3A0x6b4fb693c06d337d!2sHotel%20Saugaat%20Regency!5e0!3m2!1sen!2sin!4v1715800000000!5m2!1sen!2sin"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className={`transition-all duration-700 ${isMapActive ? 'grayscale-0 opacity-100' : 'grayscale opacity-40 hover:grayscale-0 hover:opacity-60'}`}
+                            ></iframe>
+
+                            {/* Interaction Overlay */}
+                            {!isMapActive && (
+                                <div
+                                    onClick={() => setIsMapActive(true)}
+                                    className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20 hover:bg-black/10 transition-colors z-20"
+                                >
+                                    <span className="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full text-white font-semibold shadow-2xl transform transition-transform hover:scale-110 active:scale-95">
+                                        Interact with Map
+                                    </span>
+                                </div>
+                            )}
+
+                            {/* Back out button (optional but good for mobile) */}
+                            {isMapActive && (
+                                <button
+                                    onClick={() => setIsMapActive(false)}
+                                    className="absolute top-4 right-4 z-30 bg-black/60 backdrop-blur-md p-2 rounded-full text-white/80 hover:text-white border border-white/10"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                                </button>
+                            )}
                         </div>
                     </FadeInUp>
                 </div>
