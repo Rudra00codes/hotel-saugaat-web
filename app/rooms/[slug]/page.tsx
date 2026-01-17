@@ -119,7 +119,9 @@ export default async function RoomDetailsPage({ params }: { params: Promise<{ sl
                         <h1 className="text-4xl md:text-5xl font-bold text-neutral-100 mb-2">{room.name}</h1>
                         <p className="text-lg text-neutral-400">Starting from <span className="text-white font-semibold">₹ {room.price}</span> / night</p>
                     </div>
-                    <Button size="lg" className="rounded-full bg-white text-neutral-900 hover:bg-gray-200 px-8">Book This Room</Button>
+                    <Button size="lg" className="rounded-full bg-white text-neutral-900 hover:bg-gray-200 px-8" asChild>
+                        <a href="#booking-form">Book This Room</a>
+                    </Button>
                 </div>
 
                 {/* Gallery Grid - Handle cases with fewer images */}
@@ -182,7 +184,7 @@ export default async function RoomDetailsPage({ params }: { params: Promise<{ sl
                     </div>
 
                     {/* Right Sidebar */}
-                    <div className="lg:col-span-1">
+                    <div id="booking-form" className="lg:col-span-1 scroll-mt-32">
                         <BookingForm defaultRoomName={room.name} price={room.price} availableRooms={roomNames} />
                     </div>
                 </div>
