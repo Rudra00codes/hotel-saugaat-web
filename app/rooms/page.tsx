@@ -10,7 +10,7 @@ export const revalidate = 60;
 export default async function RoomsPage() {
     const rooms: Room[] = await client.fetch(allRoomsQuery);
 
-    return (
+    return ( 
         <div className="bg-gradient-to-b from-gray-950 via-orange-100 to-cream-mist min-h-screen pb-20 pt-24">
             <div className="container mx-auto pt-16 px-4 sm:px-6 lg:px-8">
                 <div className="mb-12">

@@ -37,6 +37,12 @@ export const allRoomsQuery = groq`
   }
 `;
 
+export const roomNamesQuery = groq`
+  *[_type == "roomType"] | order(name asc) {
+    name
+  }
+`;
+
 export const roomBySlugQuery = groq`
   *[_type == "roomType" && slug.current == $slug][0] {
     _id,
