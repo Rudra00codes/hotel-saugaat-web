@@ -13,7 +13,7 @@ const FACILITIES = [
     },
     {
         title: "Fine Dining Restaurant",
-        image: "/facilities/restaurant.png",
+        image: "/facilities/restaurant.jpg",
         overlayText: "Multi-cuisine restaurant serving local & international delicacies"
     },
     {
@@ -23,7 +23,7 @@ const FACILITIES = [
     },
     {
         title: "Conference Room",
-        image: "/facilities/conference.png",
+        image: "/facilities/conference.jpg",
         overlayText: "Professional space for your business meetings"
     }
 ];
