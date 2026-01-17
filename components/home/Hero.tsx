@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, Star, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,41 @@ export default function Hero() {
     const [checkIn, setCheckIn] = useState("");
     const [checkOut, setCheckOut] = useState("");
     const [guests, setGuests] = useState(2);
+
+    const checkInRef = useRef<HTMLInputElement>(null);
+    const checkOutRef = useRef<HTMLInputElement>(null);
+
+    const handleCheckInClick = () => {
+        const input = checkInRef.current;
+        if (!input) return;
+        try {
+            if ((input as any).showPicker) {
+                (input as any).showPicker();
+            } else {
+                input.focus();
+                input.click();
+            }
+        } catch (error) {
+            console.error("Date picker error:", error);
+            input.click();
+        }
+    };
+
+    const handleCheckOutClick = () => {
+        const input = checkOutRef.current;
+        if (!input) return;
+        try {
+            if ((input as any).showPicker) {
+                (input as any).showPicker();
+            } else {
+                input.focus();
+                input.click();
+            }
+        } catch (error) {
+            console.error("Date picker error:", error);
+            input.click();
+        }
+    };
 
     return (
         <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
@@ -24,7 +59,7 @@ export default function Hero() {
                     className="object-cover"
                     quality={90}
                 />
-                <div className="absolute inset-0 bg-black/40 z-10" />
+                <div className="absolute inset-0 bg-black/70 z-10" />
             </div>
 
             {/* Content */}
@@ -68,11 +103,15 @@ export default function Hero() {
                 <div className="container mx-auto px-4">
                     <div className="bg-[#EDE9DF]/90 backdrop-blur-lg border border-white/20 rounded-full p-2 max-w-4xl mx-auto flex items-center justify-between shadow-2xl">
                         {/* Check In */}
-                        <div className="flex-1 px-8 py-3 border-r border-neutral-100 relative group cursor-pointer transition-colors hover:bg-neutral-50 rounded-l-full">
+                        <div
+                            onClick={handleCheckInClick}
+                            className="flex-1 px-8 py-3 border-r border-neutral-100 relative group cursor-pointer transition-colors hover:bg-neutral-50 rounded-l-full"
+                        >
                             <p className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Check In</p>
                             <input
+                                ref={checkInRef}
                                 type="date"
-                                className="absolute inset-0 opacity-0 cursor-pointer z-10"
+                                className="absolute inset-0 opacity-0 pointer-events-none"
                                 onChange={(e) => setCheckIn(e.target.value)}
                                 value={checkIn}
                             />
@@ -82,11 +121,15 @@ export default function Hero() {
                         </div>
 
                         {/* Check Out */}
-                        <div className="flex-1 px-8 py-3 border-r border-neutral-100 relative group cursor-pointer transition-colors hover:bg-neutral-50">
+                        <div
+                            onClick={handleCheckOutClick}
+                            className="flex-1 px-8 py-3 border-r border-neutral-100 relative group cursor-pointer transition-colors hover:bg-neutral-50"
+                        >
                             <p className="text-xs text-neutral-500 font-bold uppercase tracking-wider mb-1">Check Out</p>
                             <input
+                                ref={checkOutRef}
                                 type="date"
-                                className="absolute inset-0 opacity-0 cursor-pointer z-10"
+                                className="absolute inset-0 opacity-0 pointer-events-none"
                                 onChange={(e) => setCheckOut(e.target.value)}
                                 value={checkOut}
                             />

@@ -125,7 +125,7 @@ export default async function RoomDetailsPage({ params }: { params: Promise<{ sl
                 </div>
 
                 {/* Gallery Grid - Handle cases with fewer images */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 rounded-3xl overflow-hidden mb-12 h-[500px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 rounded-3xl overflow-hidden mb-12 h-[600px]">
                     <div className="relative h-full">
                         {room.images && room.images[0] && (
                             <Image src={room.images[0]} alt={room.name} fill className="object-cover" priority />
