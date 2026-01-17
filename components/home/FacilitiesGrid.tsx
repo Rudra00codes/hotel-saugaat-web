@@ -8,22 +8,22 @@ import { motion } from "framer-motion";
 const FACILITIES = [
     {
         title: "Grand Banquet Hall",
-        image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=3536&auto=format&fit=crop",
+        image: "/facilities/banquet.png",
         overlayText: "For weddings & large events up to 200 guests"
     },
     {
         title: "Fine Dining Restaurant",
-        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=3540&auto=format&fit=crop",
+        image: "/facilities/restaurant.png",
         overlayText: "Multi-cuisine restaurant serving local & international delicacies"
     },
     {
         title: "Bar & Lounge",
-        image: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=3350&auto=format&fit=crop",
+        image: "/facilities/bar.png",
         overlayText: "Relax with our selection of premium beverages"
     },
     {
         title: "Conference Room",
-        image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=3538&auto=format&fit=crop",
+        image: "/facilities/conference.png",
         overlayText: "Professional space for your business meetings"
     }
 ];
