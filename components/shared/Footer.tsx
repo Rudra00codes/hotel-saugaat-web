@@ -76,7 +76,7 @@ export default function Footer({ settings }: FooterProps) {
                                 <span>
                                     {contact?.address || (
                                         <>
-                                            Ambala-Chandigarh Highway,<br />
+                                            Chandigarh-Ambala Highway,<br />
                                             Dera Bassi, Punjab 140507
                                         </>
                                     )}
@@ -84,14 +84,14 @@ export default function Footer({ settings }: FooterProps) {
                             </li>
                             <li className="flex items-center gap-3 text-neutral-400">
                                 <Phone className="w-5 h-5 shrink-0" />
-                                <a href={`tel:${contact?.phone || "+919876543210"}`} className="hover:text-white transition-colors">
-                                    {contact?.phone || "+91 98765 43210"}
+                                <a href={`tel:${contact?.phone || "+918872011301"}`} className="hover:text-white transition-colors">
+                                    {contact?.phone || "+91 88720 11301"}
                                 </a>
                             </li>
                             <li className="flex items-center gap-3 text-neutral-400">
                                 <Mail className="w-5 h-5 shrink-0" />
-                                <a href={`mailto:${contact?.email || "info@hotelsaugaat.com"}`} className="hover:text-white transition-colors">
-                                    {contact?.email || "info@hotelsaugaat.com"}
+                                <a href={`mailto:${contact?.email || "saugaatregency@gmail.com"}`} className="hover:text-white transition-colors">
+                                    {contact?.email || "saugaatregency@gmail.com"}
                                 </a>
                             </li>
                         </ul>
