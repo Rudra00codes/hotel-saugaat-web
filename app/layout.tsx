@@ -9,6 +9,8 @@ import { Toaster } from "sonner";
 import { client } from "@/lib/sanity/client";
 import { siteSettingsQuery } from "@/lib/sanity/queries";
 import { SiteSettings } from "@/types/sanity";
+import InstallPrompt from "@/components/pwa/InstallPrompt";
+import PushNotificationManager from "@/components/pwa/PushNotificationManager";
 
 const cabinet = localFont({
   src: "../public/font/CabinetGrotesk/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Variable.woff2",
@@ -49,6 +51,8 @@ export default async function RootLayout({
         <Navbar settings={settings} />
         <main className="min-h-screen">{children}</main>
         <WhatsAppButton />
+        <InstallPrompt />
+        <PushNotificationManager />
         <Footer settings={settings} />
         <Toaster position="top-center" richColors />
       </body>
