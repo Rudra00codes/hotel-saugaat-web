@@ -31,7 +31,7 @@ export default function Footer({ settings }: FooterProps) {
 
                     {/* Brand Description & Socials */}
                     <div className="space-y-6">
-                        <p className="text-neutral-400 leading-relaxed">
+                        <p className="text-neutral-400 leading-relaxed tracking-wider">
                             Experience the perfect blend of luxury and comfort. Your home away from home in the heart of Dera Bassi.
                         </p>
                         <div className="flex gap-4">
@@ -59,7 +59,7 @@ export default function Footer({ settings }: FooterProps) {
                                 { label: "Contact Us", href: "/contact" },
                             ].map((link) => (
                                 <li key={link.label}>
-                                    <Link href={link.href} className="text-neutral-400 hover:text-white transition-colors">
+                                    <Link href={link.href} className="text-neutral-400 hover:text-white transition-colors tracking-wider">
                                         {link.label}
                                     </Link>
                                 </li>
@@ -99,7 +99,7 @@ export default function Footer({ settings }: FooterProps) {
                 </div>
 
                 {/* Copyright */}
-                <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500">
+                <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500 tracking-wider">
                     <p>© {new Date().getFullYear()} {siteName}. All rights reserved.</p>
                     <div className="flex gap-6">
                         <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
@@ -109,7 +109,7 @@ export default function Footer({ settings }: FooterProps) {
 
                 {/* Large Background Typography */}
                 <div className="mt-16 text-center select-none overflow-hidden">
-                    <h2 className="text-[10vw] font-black leading-none tracking-tighter bg-[linear-gradient(to_bottom,#883322,#283123)] bg-clip-text text-transparent opacity-60 whitespace-nowrap uppercase">
+                    <h2 className="text-[8vw] font-black leading-none tracking-tighter bg-[linear-gradient(to_bottom,#883322,#283123)] bg-clip-text text-transparent opacity-60 whitespace-nowrap uppercase tracking-wider">
                         {siteName}
                     </h2>
                 </div>

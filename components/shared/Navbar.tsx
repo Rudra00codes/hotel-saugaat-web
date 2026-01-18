@@ -76,7 +76,7 @@ export default function Navbar({ settings }: NavbarProps) {
                                 className={cn(
                                     "px-5 py-2 rounded-full text-sm font-medium transition-colors duration-200",
                                     "hover:bg-white hover:text-black",
-                                    isScrolled ? "text-neutral-700" : "text-white"
+                                    isScrolled ? "text-neutral-800" : "text-white"
                                 )}
                             >
                                 {link.name}
@@ -87,7 +87,7 @@ export default function Navbar({ settings }: NavbarProps) {
                     {/* CTA Button */}
                     <div className="hidden md:block">
                         <Link href="/booking" className={cn(
-                            "flex items-center gap-2 px-6 py-2.5 rounded-full font-medium transition-all duration-300 group",
+                            "flex items-center gap-2 px-6 py-2.5 rounded-full font-medium transition-all duration-300 group tracking-wider",
                             isScrolled
                                 ? "bg-neutral-900 text-white hover:bg-neutral-800"
                                 : "bg-white text-neutral-900 hover:bg-neutral-100"

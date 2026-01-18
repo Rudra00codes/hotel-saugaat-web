@@ -26,7 +26,7 @@ export default function LocationSection() {
                             subtitle="Location"
                             light
                         />
-                        <p className="text-neutral-300 text-lg mb-8 leading-relaxed">
+                        <p className="text-neutral-300 text-lg mb-8 leading-relaxed tracking-wider">
                             Strategically located on the Ambala-Chandigarh Highway, Hotel Saugaat Regency offers easy access to major landmarks including Chandigarh Airport and Railway Station.
                         </p>
 
@@ -36,8 +36,8 @@ export default function LocationSection() {
                                     <MapPin className="w-6 h-6 text-white" />
                                 </div>
                                 <div>
-                                    <h4 className="text-xl font-semibold mb-1">Our Address</h4>
-                                    <p className="text-neutral-400">Ambala-Chandigarh Highway, Dera Bassi<br />Punjab 140507, India</p>
+                                    <h4 className="text-xl font-semibold mb-1 tracking-wider">Our Address</h4>
+                                    <p className="text-neutral-400 tracking-wider">Ambala-Chandigarh Highway, Dera Bassi<br />Punjab 140507, India</p>
                                 </div>
                             </div>
 
@@ -46,8 +46,8 @@ export default function LocationSection() {
                                     <Clock className="w-6 h-6 text-white" />
                                 </div>
                                 <div>
-                                    <h4 className="text-xl font-semibold mb-1">Distances</h4>
-                                    <ul className="text-neutral-400 space-y-1">
+                                    <h4 className="text-xl font-semibold mb-1 tracking-wider">Distances</h4>
+                                    <ul className="text-neutral-400 space-y-1 tracking-wider">
                                         <li>Chandigarh Airport: 14 km (20 min)</li>
                                         <li>Chandigarh Railway Station: 16 km (25 min)</li>
                                     </ul>
@@ -57,7 +57,7 @@ export default function LocationSection() {
 
                         <div className="mt-10">
                             <Link href="https://maps.google.com" target="_blank">
-                                <Button size="lg" className="bg-white text-black hover:bg-neutral-200 border-none rounded-full px-8">
+                                <Button size="lg" className="bg-white text-black hover:bg-neutral-200 border-none rounded-full px-8 tracking-wider">
                                     Get Directions
                                 </Button>
                             </Link>
@@ -84,7 +84,7 @@ export default function LocationSection() {
                                     onClick={() => setIsMapActive(true)}
                                     className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20 hover:bg-black/10 transition-colors z-20"
                                 >
-                                    <span className="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full text-white font-semibold shadow-2xl transform transition-transform hover:scale-110 active:scale-95">
+                                    <span className="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full text-white font-semibold shadow-2xl transform transition-transform hover:scale-110 active:scale-95 tracking-wider">
                                         Interact with Map
                                     </span>
                                 </div>

@@ -81,17 +81,17 @@ export default function Hero() {
                 </FadeInUp>
 
                 <FadeInUp delay={0.3}>
-                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed md:mx-auto">
+                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed md:mx-auto tracking-wider">
                         The perfect destination for weddings, corporate events, and leisure stays on the Chandigarh-Ambala highway.
                     </p>
                 </FadeInUp>
 
                 <FadeInUp delay={0.4}>
                     <div className="flex flex-col sm:flex-row items-start justify-start md:items-center md:justify-center gap-4">
-                        <Button size="lg" asChild className="bg-white text-black hover:bg-neutral-200 border-none text-base h-14 px-8 rounded-full">
+                        <Button size="lg" asChild className="bg-white text-black hover:bg-neutral-200 border-none text-base h-14 px-8 rounded-full tracking-wider">
                             <Link href="/rooms">Book Your Stay</Link>
                         </Button>
-                        <Button variant="outline" size="lg" asChild className="bg-transparent text-white border-white hover:bg-white/10 text-base h-14 px-8 rounded-full">
+                        <Button variant="outline" size="lg" asChild className="bg-transparent text-white border-white hover:bg-white/10 text-base h-14 px-8 rounded-full tracking-wider">
                             <Link href="/events">Explore Events</Link>
                         </Button>
                     </div>

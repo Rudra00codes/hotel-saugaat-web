@@ -27,7 +27,7 @@ export default function FeaturedRooms({ rooms }: FeaturedRoomsProps) {
                     </FadeInUp>
                     <FadeInUp delay={0.2}>
                         <Link href="/rooms">
-                            <Button variant="outline" className="rounded-full text-gray-300 bg-gray-900 px-6 gap-2">
+                            <Button variant="outline" className="rounded-full text-gray-300 bg-gray-900 px-6 gap-2 tracking-wider">
                                 View All Rooms
                                 <ArrowRight className="w-4 h-4" />
                             </Button>
