@@ -71,7 +71,7 @@ export const eventsQuery = groq`
     name,
     "slug": slug.current,
     description,
-    "image": images[0].asset->url,
+    "images": images[].asset->url,
     capacity,
     features,
     order

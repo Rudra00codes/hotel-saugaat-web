@@ -1,11 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import heroImage from "@/public/EventHero/heroImage.jpg";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, Users } from "lucide-react"; // Added Users
 import { client } from "@/lib/sanity/client";
 import { eventsQuery } from "@/lib/sanity/queries";
 import { EventSpace } from "@/types/sanity";
+import { PortableText } from "next-sanity";
+import { FadeInUp } from "@/components/shared/Animations";
+import EventCarousel from "@/components/events/EventCarousel";
 
 import { Metadata } from "next";
 
@@ -25,69 +29,77 @@ export default async function EventsPage() {
             {/* Hero Section */}
             <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden mb-20">
                 <Image
-                    src="https://images.unsplash.com/photo-1519225468359-2996bc140aaa?q=80&w=3540&auto=format&fit=crop"
+                    src={heroImage}
                     alt="Events at Saugaat"
                     fill
                     className="object-cover"
+                    placeholder="blur"
+                    priority
                 />
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="relative z-10 text-center text-white container px-4">
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">Celebrate with Us</h1>
-                    <p className="text-xl max-w-2xl mx-auto opacity-90">
-                        From dream weddings to professional corporate events, we make every occasion memorable.
-                    </p>
+                    <FadeInUp>
+                        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">Celebrate with Us</h1>
+                        <p className="text-xl max-w-2xl mx-auto opacity-90 leading-relaxed tracking-wider">
+                            From dream weddings to professional corporate events, we make every occasion memorable.
+                        </p>
+                    </FadeInUp>
                 </div>
             </section>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <SectionHeading
-                    title="Our Event Spaces"
-                    subtitle="Venues"
-                    center
-                    className="mb-16"
-                />
+                <FadeInUp>
+                    <SectionHeading
+                        title="Our Event Spaces"
+                        subtitle="Venues"
+                        center
+                        className="mb-16"
+                    />
+                </FadeInUp>
 
-                <div className="space-y-24">
+                <div className="space-y-24 md:space-y-32">
                     {venues.map((venue, index) => (
-                        <div key={venue._id} className={`flex flex-col lg:flex-row gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                            {/* Image */}
-                            <div className="w-full lg:w-1/2 h-[400px] relative rounded-3xl overflow-hidden shadow-lg">
-                                <Image
-                                    src={venue.image}
-                                    alt={venue.name}
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-700"
+                        <FadeInUp key={venue._id} delay={index * 0.1}>
+                            <div className={`flex flex-col lg:flex-row gap-8 lg:gap-16 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                                {/* Image Carousel */}
+                                <EventCarousel
+                                    images={venue.images || []}
+                                    name={venue.name}
+                                    className="w-full lg:w-1/2 h-[400px] sm:h-[450px] lg:h-[500px]"
                                 />
-                            </div>
 
-                            {/* Content */}
-                            <div className="w-full lg:w-1/2">
-                                <h2 className="text-3xl md:text-4xl font-bold mb-4">{venue.name}</h2>
-                                <div className="inline-block bg-neutral-100 px-4 py-1.5 rounded-full text-sm font-medium text-neutral-800 mb-6">
-                                    Capacity: {venue.capacity}
-                                </div>
-                                <p className="text-neutral-600 text-lg leading-relaxed mb-8">
-                                    {venue.description}
-                                </p>
+                                {/* Content */}
+                                <div className="w-full lg:w-1/2 text-left">
+                                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-neutral-800 tracking-tight">{venue.name}</h2>
 
-                                {venue.features && (
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                                        {venue.features.map((feature, idx) => (
-                                            <div key={idx} className="flex items-center gap-3">
-                                                <div className="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center shrink-0">
-                                                    <Check className="w-3.5 h-3.5 text-green-600" />
-                                                </div>
-                                                <span className="text-neutral-700">{feature}</span>
-                                            </div>
-                                        ))}
+                                    <div className="inline-flex items-center gap-2 bg-orange-100/80 backdrop-blur-sm border border-orange-200 px-4 py-2 rounded-full text-sm font-semibold text-orange-900 mb-8 shadow-sm">
+                                        <Users className="w-4 h-4" />
+                                        <span>Capacity: {venue.capacity}</span>
                                     </div>
-                                )}
 
-                                <Button size="lg" className="rounded-full px-8">
-                                    Inquire for Booking <ArrowRight className="ml-2 w-4 h-4" />
-                                </Button>
+                                    <div className="text-neutral-600 text-lg leading-relaxed mb-8 prose-neutral max-w-none">
+                                        <PortableText value={venue.description} />
+                                    </div>
+
+                                    {venue.features && (
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 mb-10">
+                                            {venue.features.map((feature, idx) => (
+                                                <div key={idx} className="flex items-start gap-3 group/item">
+                                                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-green-200 transition-colors">
+                                                        <Check className="w-3.5 h-3.5 text-green-700" />
+                                                    </div>
+                                                    <span className="text-neutral-700 font-medium group-hover/item:text-neutral-900 transition-colors">{feature}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    <Button size="lg" className="rounded-full px-10 h-14 text-lg bg-neutral-900 text-white hover:bg-neutral-800 shadow-xl shadow-neutral-900/20 active:scale-95 transition-all tracking-wider w-full sm:w-auto">
+                                        INQUIRE FOR BOOKING <ArrowRight className="ml-2 w-5 h-5" />
+                                    </Button>
+                                </div>
                             </div>
-                        </div>
+                        </FadeInUp>
                     ))}
                 </div>
 
@@ -96,15 +108,17 @@ export default async function EventsPage() {
                     <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
                     <div className="relative z-10 max-w-3xl mx-auto">
                         <h2 className="text-3xl md:text-5xl font-bold mb-6">Planning an Event?</h2>
-                        <p className="text-xl text-neutral-300 mb-10">
+                        <p className="text-xl text-neutral-300 mb-10 tracking-wider">
                             Get in touch with our event planners to discuss your requirements and get a customized quote.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button size="lg" className="bg-white text-black hover:bg-neutral-200 border-none rounded-full h-14 px-8 text-base">
-                                Contact Event Team
+                            <Button asChild size="lg" className="bg-white text-black hover:bg-neutral-200 border-none rounded-full h-14 px-8 sm:px-10 text-base tracking-wider w-full sm:w-auto">
+                                <a href="tel:+918872011301">
+                                    REQUEST A QUOTE NOW <ArrowRight className="ml-2 w-5 h-5" />
+                                </a>
                             </Button>
-                            <Button variant="outline" size="lg" className="bg-transparent text-white border-white hover:bg-white/10 rounded-full h-14 px-8 text-base">
-                                Download Brochure
+                            <Button variant="outline" size="lg" className="bg-transparent text-white border-white hover:bg-white/10 rounded-full h-14 px-8 sm:px-10 text-base tracking-wider w-full sm:w-auto">
+                                DOWNLOAD BROCHURE <ArrowRight className="ml-2 w-5 h-5" />
                             </Button>
                         </div>
                     </div>

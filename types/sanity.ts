@@ -40,8 +40,8 @@ export interface EventSpace {
     _id: string;
     name: string;
     slug: string;
-    description: string;
-    image: string;
+    description: any; // Portable Text
+    images: string[];
     capacity: string;
     features: string[];
 }
