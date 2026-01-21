@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { subscribeUser, unsubscribeUser, sendNotification } from "@/app/actions/push";
+import { subscribeUser, unsubscribeUser } from "@/app/actions/push";
 import { urlBase64ToUint8Array } from "@/utils/urlBase64ToUint8Array";
 import { Button } from "@/components/ui/button";
 import { Bell, BellOff } from "lucide-react";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 export default function PushNotificationManager() {
     const [isSupported, setIsSupported] = useState(false);
@@ -71,45 +72,82 @@ export default function PushNotificationManager() {
         }
     }
 
-    async function sendTestNotification() {
-        if (!subscription) return;
-        setLoading(true);
-        try {
-            await sendNotification("This is a test notification from Saugaat Regency!", subscription.toJSON());
-            toast.success("Test notification sent!");
-        } catch (e) {
-            toast.error("Failed to send test notification");
-        } finally {
-            setLoading(false);
-        }
-    }
 
-    if (!isSupported) {
-        return null; // Don't show anything if push not supported (e.g. older iOS, non-https local without override)
+
+    const [isVisible, setIsVisible] = useState(true);
+
+    if (!isSupported || !isVisible) {
+        return null;
     }
 
     return (
-        <div className="fixed bottom-4 right-4 z-40 hidden md:block">
-            {/* Usually hidden or placed in settings, but for PWA demo we can show it here or return null and use it in a settings page. 
-           For this specific task, I'll return it as a small UI component the user can interact with to TEST. */}
-            <div className="bg-white p-3 rounded-xl shadow-lg border border-neutral-200 flex flex-col gap-2 w-64">
-                <h4 className="font-semibold text-sm">Notifications</h4>
-                {subscription ? (
-                    <>
-                        <p className="text-xs text-green-600">Active</p>
-                        <Button onClick={unsubscribeFromPush} variant="outline" size="sm" disabled={loading} className="w-full">
-                            <BellOff className="w-4 h-4 mr-2" /> Disable
-                        </Button>
-                        <Button onClick={sendTestNotification} size="sm" disabled={loading} className="w-full">
-                            Test Alert
-                        </Button>
-                    </>
-                ) : (
-                    <Button onClick={subscribeToPush} size="sm" disabled={loading} className="w-full bg-neutral-900 text-white">
-                        <Bell className="w-4 h-4 mr-2" /> Enable Push
-                    </Button>
-                )}
-            </div>
+        <div className="fixed bottom-24 right-6 z-40 hidden md:flex items-center justify-end">
+            <motion.div
+                initial="collapsed"
+                whileHover="expanded"
+                className="relative"
+            >
+                <motion.div
+                    className="flex items-center bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(31,38,135,0.15)] rounded-full overflow-hidden"
+                    variants={{
+                        collapsed: { width: "3.5rem", height: "3.5rem" },
+                        expanded: { width: "auto", height: "auto", borderRadius: "1.5rem" }
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                >
+                    {/* Collapsed State Icon (Right Aligned) */}
+                    <div className="absolute right-0 top-0 w-14 h-14 flex items-center justify-center text-neutral-400">
+                        {subscription ? <Bell className="w-6 h-6 text-green-600 fill-green-600/20" /> : <Bell className="w-6 h-6" />}
+                    </div>
+
+                    {/* Expanded Content (Revealed on Hover) */}
+                    <motion.div
+                        className="flex flex-col p-5 pr-16 min-w-[280px]" // Right padding to clear the icon
+                        variants={{
+                            collapsed: { opacity: 0, x: 20, pointerEvents: "none" },
+                            expanded: { opacity: 1, x: 0, pointerEvents: "auto" }
+                        }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <div className="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 className="font-bold text-neutral-800 text-sm">Notifications</h4>
+                                <p className="text-xs text-neutral-500 font-medium">
+                                    {subscription ? "You are subscribed" : "Get updates on offers"}
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => setIsVisible(false)}
+                                className="text-neutral-400 hover:text-red-500 transition-colors p-1"
+                                aria-label="Close"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                            </button>
+                        </div>
+
+                        {subscription ? (
+                            <Button
+                                onClick={unsubscribeFromPush}
+                                size="sm"
+                                disabled={loading}
+                                variant="outline"
+                                className="w-full border-red-100 text-red-600 hover:bg-red-50 hover:text-red-700 h-9 text-xs uppercase tracking-wider font-semibold"
+                            >
+                                <BellOff className="w-3 h-3 mr-2" /> Disable
+                            </Button>
+                        ) : (
+                            <Button
+                                onClick={subscribeToPush}
+                                size="sm"
+                                disabled={loading}
+                                className="w-full bg-neutral-900 text-white hover:bg-neutral-800 h-9 text-xs uppercase tracking-wider font-semibold shadow-md"
+                            >
+                                <Bell className="w-3 h-3 mr-2" /> Enable Push
+                            </Button>
+                        )}
+                    </motion.div>
+                </motion.div>
+            </motion.div>
         </div>
     );
 }

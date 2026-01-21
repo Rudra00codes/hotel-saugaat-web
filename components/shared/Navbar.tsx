@@ -101,7 +101,7 @@ export default function Navbar({ settings }: NavbarProps) {
             </header>
 
             {/* Mobile Nav Pill */}
-            <div className="md:hidden fixed top-6 left-6 z-50">
+            <div className="md:hidden fixed top-6 left-6 z-100">
                 <AnimatePresence mode="wait">
                     {!isMobileMenuOpen ? (
                         <motion.button
@@ -110,6 +110,12 @@ export default function Navbar({ settings }: NavbarProps) {
                             onClick={() => setIsMobileMenuOpen(true)}
                             className="flex items-center gap-3 bg-white/20 backdrop-blur-xl border border-white/20 rounded-full pl-5 pr-2 py-2 shadow-lg"
                             whileTap={{ scale: 0.95 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 30,
+                                mass: 0.8
+                            }}
                         >
                             <Image
                                 src="/navlogo.png"
@@ -127,7 +133,13 @@ export default function Navbar({ settings }: NavbarProps) {
                         <motion.div
                             key="overlay"
                             layoutId="mobile-nav-pill"
-                            className="fixed inset-4 bg-[#283123]/95 backdrop-blur-2xl rounded-[32px] overflow-hidden flex flex-col z-50 shadow-2xl border border-white/5"
+                            className="fixed inset-4 bg-[#283123]/95 backdrop-blur-2xl rounded-[32px] overflow-hidden flex flex-col z-[50] shadow-2xl border border-white/5"
+                            transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 30,
+                                mass: 0.8
+                            }}
                         >
                             {/* Header inside Overlay */}
                             <div className="flex items-center justify-between p-6 border-b border-white/10">
