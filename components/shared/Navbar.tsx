@@ -86,7 +86,7 @@ export default function Navbar({ settings }: NavbarProps) {
 
                     {/* CTA Button */}
                     <div className="hidden md:block">
-                        <Link href="/booking" className={cn(
+                        <a href="tel:+919855388442" className={cn(
                             "flex items-center gap-2 px-6 py-2.5 rounded-full font-medium transition-all duration-300 group tracking-wider",
                             isScrolled
                                 ? "bg-neutral-900 text-white hover:bg-neutral-800"
@@ -94,7 +94,7 @@ export default function Navbar({ settings }: NavbarProps) {
                         )}>
                             <span>Book Now</span>
                             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                        </Link>
+                        </a>
                     </div>
 
                 </div>
@@ -187,14 +187,14 @@ export default function Navbar({ settings }: NavbarProps) {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.2 + navLinks.length * 0.1 }}
                                 >
-                                    <Link
-                                        href="/booking"
+                                    <a
+                                        href="tel:+919855388442"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                         className="inline-flex items-center gap-2 bg-[linear-gradient(to_bottom,#EACFA3,#F0944D)] text-white px-6 py-2 rounded-2xl text-md font-medium shadow-lg"
                                     >
                                         Book Your Stay
                                         <ArrowUpRight className="w-5 h-5" />
-                                    </Link>
+                                    </a>
                                 </motion.div>
                             </div>
                         </motion.div>
